@@ -7,9 +7,10 @@ class ProductsController < ApplicationController
     @products = OpenStruct.new(products_params)
 
     produto1_kg = @products.produto1_kg.to_f
-    produto1_valor = @products.produto1_valor.to_f
+    produto1_valor = @products.produto1_valor
 
     @valor_por_kg_produto1 = produto1_valor
+    # render plain: "Cálculo completo"
   end
 
   private
