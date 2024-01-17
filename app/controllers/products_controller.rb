@@ -1,21 +1,19 @@
 class ProductsController < ApplicationController
-  def calculadora
-    @products = OpenStruct.new
-  end
-
   def calcula
-    @products = OpenStruct.new(products_params)
+    @produto1_kg = params[:produto1_kg].to_f
+    @produto1_valor = params[:produto1_valor].to_f
+    @valor_por_kg_produto1 = @produto1_kg / @produto1_valor
 
-    produto1_kg = @products.produto1_kg.to_f
-    produto1_valor = @products.produto1_valor
+    session[:produto1_valor] = @produto1_valor
+    session[:valor_por_kg_produto1] = @valor_por_kg_produto1
 
-    @valor_por_kg_produto1 = produto1_valor
-    # render plain: "Cálculo completo"
+    # redirect_to("/products/resultados", allow_other_host: true)
+    redirect_to("/products/resultados", allow_other_host: true)
   end
 
-  private
-
-  def products_params
-    params.require(:products).permit(:produto1_kg, :produto1_valor)
+  def resultados
+    # Para acessar um valor na sessão
+    @produto1_valor = session[:produto1_valor]
+    @valor_por_kg_produto = session[:valor_por_kg_produto1]
   end
 end

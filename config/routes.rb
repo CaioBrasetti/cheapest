@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root to: "products#index"
-  get 'products/calculadora'
+  get 'products/resultados'
   post 'products/calcula'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

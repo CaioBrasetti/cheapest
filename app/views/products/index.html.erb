@@ -1,18 +1,11 @@
 <div data-controller="products" class="mt-5">
   <h1>Calculadora de Valor por Quilograma</h1>
 
-  <%= simple_form_for :products, url: products_calcula_path, method: :post do |f| %>
-    <%= f.input :produto1_kg, label: 'Produto 1 - Quilogramas', input_html: { type: 'number' } %>
-    <%= f.input :produto1_valor, label: 'Produto 1 - Valor', input_html: { type: 'number' } %>
-
-    <%= f.button :submit, 'Calcular' %>
-  <% end %>
-
-  <% if @valor_por_kg_produto1.present? %>
-    <h2>Resultado:</h2>
-    <p>Valor por Quilograma do Produto 1: <%= @valor_por_kg_produto1 %></p>
-
-  <h3>Valor do Produto 1 digitado pelo cliente:</h3>
-    <p><%= @products.produto1_valor %></p>
+  <%= form_with url: products_calcula_path, method: :post do |f| %>
+    <%= f.label :query, "Produto 1 - Quilogramas:" %>
+    <%= f.text_field :produto1_kg %>
+    <%= f.label :query, "Produto 1 - Valor:" %>
+    <%= f.text_field :produto1_valor %>
+    <%= f.submit "Calcular" %>
   <% end %>
 </div>
